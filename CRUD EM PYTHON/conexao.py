@@ -8,6 +8,8 @@ conn = sqlite3.connect('innovaPrime.db')
 cursor = conn.cursor()
 
 # Criação da tabela
-cursor.execute("""CREATE TABLE IF NOT EXISTS cliente ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'nome' TEXT, 'sobrenome' TEXT, 'correspondente' TEXT, 'processoTipo' TEXT, 'data' TEXT)""")
+cursor.execute("""CREATE TABLE IF NOT EXISTS cliente ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'nome' TEXT, 'sobrenome' TEXT, 'correspondente' TEXT, 'processoTipo' TEXT, 'data' DATE)""")
+
+
 
 

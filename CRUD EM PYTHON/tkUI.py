@@ -1,4 +1,5 @@
 #Importações
+import datetime
 from tkinter import Tk, ttk
 from customtkinter import *
 from PIL import Image
@@ -63,8 +64,17 @@ def cadastrar_cliente():
     processoTipo = inputProcessoTipoAdd.get()
     data = inputDataAdd.get()
 
+    # data_formatada = "YYYY-MM-DD"
+    # data_formatada =[]
+    # for i in range(len(data)):
+    #     data_formatada.append(data[-i])
+
+    # print(data_formatada)
+        
+    
+
     if nome == '' or sobrenome == '' or data == '':
-        return CTkLabel(adicionar, text='Preencha todos os campos', font=('Arial', 12)).place(relx=0.5, rely=0.6, anchor='center')
+        return CTkLabel(adicionar, text='Preencha todos os campos', font=('Arial', 13, 'bold')).place(relx=0.5, rely=0.7, anchor='center')
 
     cursor.execute(f"INSERT INTO cliente (nome, sobrenome, correspondente, processoTipo, data) VALUES ('{nome}', '{sobrenome}', '{correspondente}', '{processoTipo}', '{data}')")
     conexao.conn.commit()
@@ -85,8 +95,9 @@ def editar_cliente():
     processoTipo = inputProcessoTipoEdt.get()
     data = inputDataEdt.get()
 
+
     if id == '' or nome == '' or sobrenome == '' or data == '':
-        return CTkLabel(editar, text='Preencha todos os campos', font=('Arial', 12)).place(relx=0.5, rely=0.7, anchor='center')
+        return CTkLabel(editar, text='Preencha todos os campos', font=('Arial', 13, 'bold')).place(relx=0.5, rely=0.8, anchor='center')
 
     cursor.execute(f"UPDATE cliente SET nome = '{nome}', sobrenome = '{sobrenome}', correspondente = '{correspondente}', processoTipo = '{processoTipo}', data = '{data}' WHERE id = {id}")
     conexao.conn.commit()
@@ -166,11 +177,8 @@ inputCorrespondenteAdd.place(relx=0.28, rely=0.25, anchor='center')
 inputProcessoTipoAdd = CTkComboBox(adicionar, values=['Contrato', 'Aditivo'])
 inputProcessoTipoAdd.place(relx=0.72, rely=0.25, anchor='center')
 
-
 inputDataAdd = DateEntry(adicionar, width=12,font="Arial 15" ,background='darkblue', borderwidth=2, year=2025)
 inputDataAdd.place(relx=0.5, rely=0.35, anchor='center')
-
-
 
 btnCadastrar = CTkButton(adicionar, text='Cadastrar', width=200, height=50, command=cadastrar_cliente)
 btnCadastrar.place(relx=0.5, rely=0.48, anchor='center')
@@ -239,6 +247,8 @@ searchBarNome.place(relx=0.45, rely=0.06, anchor='center' )
 
 searchBarCorr = CTkEntry(app, placeholder_text='Correspondente')
 searchBarCorr.place(relx=0.6, rely=0.06, anchor='center' )
+
+# searchBarDate = CTkEntry(app, placeholder_text='')
 
 botao = CTkButton(app, text='Mostrar Clientes', command=mostrar_clientes)
 botao.place(relx=0.9, rely=0.06, anchor='center')

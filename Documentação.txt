@@ -1,0 +1,15 @@
+Projeto INNOVA PRIME
+
+CRUD - CREATE, READ, UPDATE, DELETE
+
+Necessidade: Organizar clientes que estão sendo atendidos simultaniamente em cada pedido.
+ -> Exemplo: Eduardo Soares Filho - Contrato - Tatiana - 06/03/2025
+
+Precisa de uma tela para cadastrar o cliente no banco de dados, com os campos (id, Nome,sobrenome, tipo de processo, correspondente e data)
+
+    Precisa ser possivel editar esse cliente/processo
+    Precisa ser possivel delete esse cliente/processo
+    Precisa ser possivel visualizar esse cliente/processo
+    Precisa ter filtros para os QUERYS SQL de data (para ser abrangente) e de nome para ser especifico
+
+Linguagem que será usada: PYTHON E sqlite3

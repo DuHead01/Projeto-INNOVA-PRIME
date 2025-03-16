@@ -25,7 +25,7 @@ def mostrar_clientes():
     limpar()
     i = 0
 
-    if searchBarNome.get() == '' and searchBarCorr.get() == '':
+    if searchBarNome.get() == '' and searchBarCorrespondente.get() == '' and searchBarDate.get() == '':
         cursor.execute(f"SELECT * FROM cliente")
         for linha in cursor.fetchall():
             CTkLabel(scrolavel, text=f"{linha[0]}", font=('Arial', 12)).grid(row=i, column=1, padx=29, pady=10)
@@ -44,8 +44,9 @@ def mostrar_clientes():
             CTkLabel(scrolavel, text=f"{linha[4]}", font=('Arial', 12)).grid(row=i, column=5, padx=40, pady=10)
             CTkLabel(scrolavel, text=f"{linha[5]}", font=('Arial', 12)).grid(row=i, column=6, padx=29, pady=10)
             i += 1
-    elif searchBarCorr.get() != '':
-        cursor.execute(f"SELECT * FROM cliente where correspondente like '%{searchBarCorr.get()}%'")
+    
+    elif searchBarCorrespondente.get() != '':
+        cursor.execute(f"SELECT * FROM cliente where correspondente like '%{searchBarCorrespondente.get()}%'")
         for linha in cursor.fetchall():
             CTkLabel(scrolavel, text=f"{linha[0]}", font=('Arial', 12)).grid(row=i, column=1, padx=29, pady=10)
             CTkLabel(scrolavel, text=f"{linha[1]} {linha[2]}", font=('Arial', 12)).grid(row=i, column=2, padx=40, pady=10)
@@ -53,7 +54,19 @@ def mostrar_clientes():
             CTkLabel(scrolavel, text=f"{linha[4]}", font=('Arial', 12)).grid(row=i, column=5, padx=40, pady=10)
             CTkLabel(scrolavel, text=f"{linha[5]}", font=('Arial', 12)).grid(row=i, column=6, padx=29, pady=10)
             i += 1
+
+    if searchBarDate.get() != '':
+        cursor.execute(f"SELECT * FROM cliente where data like '%{searchBarDate.get()}%'")
+        for linha in cursor.fetchall():
+            CTkLabel(scrolavel, text=f"{linha[0]}", font=('Arial', 12)).grid(row=i, column=1, padx=29, pady=10)
+            CTkLabel(scrolavel, text=f"{linha[1]} {linha[2]}", font=('Arial', 12)).grid(row=i, column=2, padx=40, pady=10)
+            CTkLabel(scrolavel, text=f"{linha[3]}", font=('Arial', 12)).grid(row=i, column=4, padx=45, pady=10)
+            CTkLabel(scrolavel, text=f"{linha[4]}", font=('Arial', 12)).grid(row=i, column=5, padx=40, pady=10)
+            CTkLabel(scrolavel, text=f"{linha[5]}", font=('Arial', 12)).grid(row=i, column=6, padx=29, pady=10)
+            i += 1
+
     
+            
 
 
 def cadastrar_cliente():
@@ -70,8 +83,6 @@ def cadastrar_cliente():
     #     data_formatada.append(data[-i])
 
     # print(data_formatada)
-        
-    
 
     if nome == '' or sobrenome == '' or data == '':
         return CTkLabel(adicionar, text='Preencha todos os campos', font=('Arial', 13, 'bold')).place(relx=0.5, rely=0.7, anchor='center')
@@ -177,7 +188,7 @@ inputCorrespondenteAdd.place(relx=0.28, rely=0.25, anchor='center')
 inputProcessoTipoAdd = CTkComboBox(adicionar, values=['Contrato', 'Aditivo'])
 inputProcessoTipoAdd.place(relx=0.72, rely=0.25, anchor='center')
 
-inputDataAdd = DateEntry(adicionar, width=12,font="Arial 15" ,background='darkblue', borderwidth=2, year=2025)
+inputDataAdd = DateEntry(adicionar, width=12,font="Arial 15" ,background='darkblue', borderwidth=2, year=2025, date_pattern='dd/mm/yyyy')
 inputDataAdd.place(relx=0.5, rely=0.35, anchor='center')
 
 btnCadastrar = CTkButton(adicionar, text='Cadastrar', width=200, height=50, command=cadastrar_cliente)
@@ -210,10 +221,13 @@ inputProcessoTipoEdt = CTkComboBox(editar, values=['Contrato', 'Aditivo'])
 inputProcessoTipoEdt.place(relx=0.72, rely=0.35, anchor='center')
 
 
-inputDataEdt = DateEntry(editar, background="black", disabledbackground="black", bordercolor="black", 
-               headersbackground="black", normalbackground="black", foreground='white', 
-               normalforeground='white', headersforeground='white', font="Arial 15", year=2025)
-inputDataEdt.config(background = "black")
+# inputDataEdt = DateEntry(editar, background="black", disabledbackground="black", bordercolor="black", 
+#                headersbackground="black", normalbackground="black", foreground='white', 
+#                normalforeground='white', headersforeground='white', font="Arial 15", year=2025)
+# inputDataEdt.config(background = "black")
+# inputDataEdt.place(relx=0.5, rely=0.45, anchor='center')
+
+inputDataEdt = DateEntry(editar, width=12,font="Arial 15" ,background='darkblue', borderwidth=2, year=2025, date_pattern='dd/mm/yyyy')
 inputDataEdt.place(relx=0.5, rely=0.45, anchor='center')
 
 btnEditar = CTkButton(editar, text='Editar', width=200, height=50, command=editar_cliente)
@@ -245,12 +259,14 @@ btnDeletar.place(relx=0.5, rely=0.25, anchor='center')
 searchBarNome = CTkEntry(app, placeholder_text='Nome cliente')
 searchBarNome.place(relx=0.45, rely=0.06, anchor='center' )
 
-searchBarCorr = CTkEntry(app, placeholder_text='Correspondente')
-searchBarCorr.place(relx=0.6, rely=0.06, anchor='center' )
+searchBarCorrespondente = CTkEntry(app, placeholder_text='Correspondente')
+searchBarCorrespondente.place(relx=0.6, rely=0.06, anchor='center' )
 
-# searchBarDate = CTkEntry(app, placeholder_text='')
+searchBarDate = CTkEntry(app, placeholder_text='Data')
+searchBarDate.place(relx=0.75, rely=0.06, anchor='center')
 
 botao = CTkButton(app, text='Mostrar Clientes', command=mostrar_clientes)
+botao.configure(height=27)
 botao.place(relx=0.9, rely=0.06, anchor='center')
 
 #--------------------------------------------

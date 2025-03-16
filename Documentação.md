@@ -1,18 +1,32 @@
-Projeto INNOVA PRIME
+<h1>Projeto INNOVA PRIME</h1>
 
-CRUD - CREATE, READ, UPDATE, DELETE
+<h3>Necessidade: Organizar os clientes que fizeram ou irão fazer certificado digital</h3>
+<br>
+       "Exemplo: Eduardo precisa de um certificado digital para realizar assiatura de documentos
+       
+    1º - Contato com o cliente
+    
+    2º - Agendamento do processo (aqui entra o registro do cliente na base de dados por meio do projeto)
+   
+         Registro: 
+               * Nome e sobrenome do cliente
+               * Tipo de processo (Contrato ou aditivo) 
+               * Correspondente (quem indicou o cliente) 
+               * Data 
+               * Status do processo
+         -> Output: Eduardo Soares - Contrato - Tatiana - 01/01/2025 - Em aberto
+         
+    3º - Transformar tabela de clientes com status de finalizado em uma tabela para fechamento do mês
 
-Necessidade: Organizar clientes que estão sendo atendidos simultaniamente em cada pedido.
- -> Exemplo: Eduardo Soares Filho - Contrato - Tatiana - 06/03/2025
- -> Exemplo: Eduardo Soares Filho - Aditamento - Ana - 06/03/2025
+<h2>Funcionalidades necessarias</h2>
 
-Atualmente não é feito um controle certo dos clientes, sendo anotado em agenda ou post-it
+    * Cadastrar clientes
+    * Editar clientes
+    * Excluir clientes
+    * Pesquisa com filtro (nome, correspodente e range de data)
+    * Pegar os dados desejados e fazer uma tabela/documento xml
+    
+  
+    
 
-Precisa de uma tela para cadastrar o cliente no banco de dados, com os campos (id, Nome,sobrenome, tipo de processo, correspondente e data)
-
-    Precisa ser possivel editar esse cliente/processo
-    Precisa ser possivel delete esse cliente/processo
-    Precisa ser possivel visualizar esse cliente/processo
-    Precisa ter filtros para os QUERYS SQL de data (para ser abrangente) e de nome para ser especifico
-
-Linguagem que será usada: PYTHON E sqlite3 -> Possivelmente fazer implantação do firebase
+Linguagem que será usada: Python, sqlite3 e CTkinter (Interface Grafica)-> Possivelmente fazer implantação do firebase
